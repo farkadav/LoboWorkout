@@ -1,0 +1,36 @@
+﻿@page "/workout"
+
+<h1>@workout.Title</h1>
+
+
+@switch (workoutState)
+{
+    case Models.Enums.WorkoutState.NotStarted:
+        <button class="btn btn-info" @onclick="StartAsync">Start</button>
+        break;
+    case Models.Enums.WorkoutState.Finished:
+        <button class="btn btn-info" @onclick="StartAsync">Repeat</button>
+        break;
+    case Models.Enums.WorkoutState.Started:
+        <button class="btn btn-info" @onclick="StopAsync">Stop</button>
+        <button class="btn btn-info" @onclick="PauseAsync">Pause</button>
+        break;
+    case Models.Enums.WorkoutState.Paused:
+        <button class="btn btn-info" @onclick="ResumeAsync">Resume</button>
+        break;
+    default:
+        break;
+}
+
+
+@if (workoutState == Models.Enums.WorkoutState.Started)
+{
+    <h2>Round: @round</h2>
+    <h2>Exercise: @currentExercise</h2>
+    <h2>Time Left: @timeLeftSeconds</h2>
+    <h2>Description: @exerciseDescription</h2>
+
+}
+
+
+
